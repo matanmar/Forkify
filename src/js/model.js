@@ -13,6 +13,7 @@ export const state = {
   bookmarks: [],
 };
 
+// getting as input data and changing names of fields
 const createRecipeObject = function (data) {
   const { recipe } = data.data;
   return {
@@ -45,6 +46,7 @@ export const loadRecipe = async function (id) {
   }
 };
 
+// fetching and loading the search recipes
 export const loadSearchResults = async function (query) {
   try {
     state.search.query = query;
@@ -68,6 +70,7 @@ export const loadSearchResults = async function (query) {
   }
 };
 
+// will render 10 recipes in each page
 export const getSearchResultsPage = function (page = state.search.page) {
   state.search.page = page;
 
@@ -77,15 +80,18 @@ export const getSearchResultsPage = function (page = state.search.page) {
   return state.search.results.slice(start, end);
 };
 
+//calculating the new serving number
 export const updateServings = function (newServings) {
   state.recipe.ingredients.forEach(ing => {
     ing.quantity = (ing.quantity * newServings) / state.recipe.servings;
+    
     // newQt = oldQt * newServings / oldServings // 2 * 8 / 4 = 4
   });
 
   state.recipe.servings = newServings;
 };
 
+// save bookmark with local storage
 const persistBookmarks = function () {
   localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
 };
@@ -122,13 +128,14 @@ const clearBookmarks = function () {
 };
 
 
+// inserting new recipe
 export const uploadRecipe = async function (newRecipe) {
   try {
     const ingredients = Object.entries(newRecipe)
       .filter(entry => entry[0].startsWith('ingredient') && entry[1] !== '')
       .map(ing => {
         const ingArr = ing[1].split(',').map(el => el.trim());
-        // const ingArr = ing[1].replaceAll(' ', '').split(',');
+       
         if (ingArr.length !== 3)
           throw new Error(
             'Wrong ingredient fromat! Please use the correct format :)'
