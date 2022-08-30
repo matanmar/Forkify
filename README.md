@@ -9,4 +9,4 @@ Used JS, HTML and CSS. this project do not inculde React. most of it is pure JS 
 ### for running the code:
 1.download code
 2. npm i
-3. npm start
+3. 3. npm start
