@@ -3,7 +3,7 @@
 Recipe application with custom recipe uploads.
 search for recipe and save them to your favorite.
 
-Used JS, HTML and CSS. this project do not inculde React. most of it is pure JS and OOP (classes).
+Used JS, HTML and CSS. this project do not inculde React. most of it is pure JS, OOP (classes) and DOM manipulation.
 
 
 ### for running the code:
